@@ -5,7 +5,7 @@ import { formatToDollars } from '../helpers';
 
 export function ModalProduct() {
 
-  const { product, onSetModal } = useKiosk();
+  const { product, onSetModal, onAddOrder } = useKiosk();
   const [qty, setQty] = useState(1);
 
   const { name, image, price } = product;
@@ -53,6 +53,14 @@ export function ModalProduct() {
 
           </button>
         </div>
+
+        <button
+          type='button'
+          className='bg-indigo-600 hover:bg-indigo-800 transition-colors text-white font-bold px-5 py-2 mt-5'
+          onClick={() => onAddOrder({ ...product, qty })}
+        >
+          Añadir al pedido
+        </button>
       </div>
 
       <div className='absolute top-0 right-0'>

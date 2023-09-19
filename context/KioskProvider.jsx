@@ -7,6 +7,7 @@ export function KioskProvider({ children }) {
   const [currentCategory, setCurrentCategory] = useState({});
   const [product, setProduct] = useState({});
   const [modal, setModal] = useState(false);
+  const [order, setOrder] = useState([]);
 
   useEffect(() => {
     setCurrentCategory(categories[0])
@@ -25,6 +26,18 @@ export function KioskProvider({ children }) {
     setModal(!modal);
   }
 
+  const onAddOrder = ({ categoryId, image, ...newOrder }) => {
+
+    const isDuplicated = order.some(product => product.id === newOrder.id);
+
+    if (isDuplicated) {
+      const orderModified = order.map(product => (product.id === newOrder.id) ? newOrder : product);
+      setOrder(orderModified);
+    } else {
+      setOrder([...order, newOrder]);
+    }
+  }
+
   return (
     <KioskContext.Provider
       value={{
@@ -34,7 +47,8 @@ export function KioskProvider({ children }) {
         onSetProduct,
         product,
         onSetModal,
-        modal
+        modal,
+        onAddOrder
       }}
     >
       {children}
