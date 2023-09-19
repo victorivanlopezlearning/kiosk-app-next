@@ -1,14 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useKiosk } from '../hooks';
 import { formatToDollars } from '../helpers';
 
 export function ModalProduct() {
 
-  const { product, onSetModal, onAddOrder } = useKiosk();
+  const { product, onSetModal, onAddOrder, order } = useKiosk();
   const [qty, setQty] = useState(1);
+  const [isEditing, setIsEditing] = useState(false);
 
   const { name, image, price } = product;
+
+
+  useEffect(() => {
+    const isInTheOrder = order.some(productState => productState.id === product.id);
+
+    if (isInTheOrder) {
+      const productEditing = order.find(productState => productState.id === product.id);
+      setIsEditing(true);
+      setQty(productEditing.qty);
+    }
+
+  }, [product, order])
+
 
   return (
     <div className="flex flex-col md:flex-row items-center md:gap-10 p-3 relative">
@@ -59,7 +73,7 @@ export function ModalProduct() {
           className='bg-indigo-600 hover:bg-indigo-800 transition-colors text-white font-bold px-5 py-2 mt-5'
           onClick={() => onAddOrder({ ...product, qty })}
         >
-          Añadir al pedido
+          {isEditing ? 'Guardar cambios' : 'Añadir al pedido'}
         </button>
       </div>
 
