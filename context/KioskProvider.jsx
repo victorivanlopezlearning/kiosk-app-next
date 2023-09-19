@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useCategories } from '../hooks/useCategories';
 import { KioskContext } from './KioskContext';
+import { toast } from 'react-toastify';
 
 export function KioskProvider({ children }) {
   const { categories } = useCategories();
@@ -8,6 +9,7 @@ export function KioskProvider({ children }) {
   const [product, setProduct] = useState({});
   const [modal, setModal] = useState(false);
   const [order, setOrder] = useState([]);
+  
 
   useEffect(() => {
     setCurrentCategory(categories[0])
@@ -33,9 +35,12 @@ export function KioskProvider({ children }) {
     if (isDuplicated) {
       const orderModified = order.map(product => (product.id === newOrder.id) ? newOrder : product);
       setOrder(orderModified);
+      toast.success('Guardado correctamente');
     } else {
       setOrder([...order, newOrder]);
+      toast.success(`${newOrder.name} se agregó al pedido`);
     }
+    setModal(false);
   }
 
   return (
@@ -48,7 +53,8 @@ export function KioskProvider({ children }) {
         product,
         onSetModal,
         modal,
-        onAddOrder
+        onAddOrder,
+        order
       }}
     >
       {children}

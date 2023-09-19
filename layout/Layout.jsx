@@ -1,7 +1,9 @@
 import Head from "next/head";
 import Modal from 'react-modal';
+import { ToastContainer } from 'react-toastify';
 import { useKiosk } from "../hooks";
 import { ModalProduct, Sidebar } from "../components";
+import 'react-toastify/dist/ReactToastify.css';
 
 const customStyles = {
   content: {
@@ -47,6 +49,8 @@ export default function Layout({ children, title = '', description = '' }) {
       >
         <ModalProduct />
       </Modal>
+
+      <ToastContainer />
     </>
   )
 }
