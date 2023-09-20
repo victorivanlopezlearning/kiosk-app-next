@@ -29,8 +29,8 @@ export function ModalProduct() {
       <div className="md:w-1/4">
         <Image
           src={`/assets/img/${image}.jpg`}
-          width={200}
-          height={300}
+          width={300}
+          height={400}
           alt={`Imagen de ${name}`}
         />
       </div>
