@@ -4,7 +4,7 @@ import { progressByPath } from '../helpers';
 const steps = [
   { step: 1, name: 'Menú', url: '/' },
   { step: 2, name: 'Resumen', url: '/summary' },
-  { step: 3, name: 'Datos y Total', url: '/checkout' },
+  { step: 3, name: 'Pagar', url: '/checkout' },
 ]
 
 export function Steps() {
