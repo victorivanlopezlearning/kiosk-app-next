@@ -48,6 +48,11 @@ export function KioskProvider({ children }) {
     setModal(!modal);
   }
 
+  const onRemoveProduct = (id) => {
+    const orderModified = order.filter((product) => product.id !== id);
+    setOrder(orderModified);
+  }
+
   return (
     <KioskContext.Provider
       value={{
@@ -60,7 +65,8 @@ export function KioskProvider({ children }) {
         modal,
         onAddOrder,
         order,
-        onEditQty
+        onEditQty,
+        onRemoveProduct
       }}
     >
       {children}
