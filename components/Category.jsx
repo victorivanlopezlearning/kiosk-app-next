@@ -1,14 +1,14 @@
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useKiosk } from '../hooks/useKiosk';
 
 export function Category({ category }) {
-
+  const route = useRouter();
   const { currentCategory, onClickCategory } = useKiosk();
-
   const { id, name, icon } = category;
 
   return (
-    <div className={`${(currentCategory?.id === id) ? 'bg-amber-400' : ''} flex items-center gap-4 w-full border p-5 hover:bg-amber-400 transition-colors`}>
+    <div className={`${(currentCategory?.id === id && route.pathname === '/') ? 'bg-amber-400' : ''} flex items-center gap-4 w-full border p-5 hover:bg-amber-400 transition-colors`}>
       <Image
         src={`/assets/img/icono_${icon}.svg`}
         width={70}
