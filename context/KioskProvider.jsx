@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { useCategories } from '../hooks/useCategories';
 import { KioskContext } from './KioskContext';
 import { toast } from 'react-toastify';
@@ -10,6 +11,8 @@ export function KioskProvider({ children }) {
   const [modal, setModal] = useState(false);
   const [order, setOrder] = useState([]);
 
+  const router = useRouter();
+
   useEffect(() => {
     setCurrentCategory(categories[0])
   }, [categories])
@@ -17,6 +20,7 @@ export function KioskProvider({ children }) {
   const onClickCategory = (id) => {
     const [category] = categories.filter(cat => cat.id === id);
     setCurrentCategory(category);
+    router.push('/');
   }
 
   const onSetProduct = (product) => {
