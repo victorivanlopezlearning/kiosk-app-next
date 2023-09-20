@@ -9,7 +9,6 @@ export function KioskProvider({ children }) {
   const [product, setProduct] = useState({});
   const [modal, setModal] = useState(false);
   const [order, setOrder] = useState([]);
-  
 
   useEffect(() => {
     setCurrentCategory(categories[0])
@@ -54,7 +53,7 @@ export function KioskProvider({ children }) {
         onSetModal,
         modal,
         onAddOrder,
-        order
+        order,
       }}
     >
       {children}
