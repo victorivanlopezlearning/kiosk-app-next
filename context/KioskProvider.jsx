@@ -27,7 +27,7 @@ export function KioskProvider({ children }) {
     setModal(!modal);
   }
 
-  const onAddOrder = ({ categoryId, image, ...newOrder }) => {
+  const onAddOrder = ({ categoryId, ...newOrder }) => {
 
     const isDuplicated = order.some(product => product.id === newOrder.id);
 
