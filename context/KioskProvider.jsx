@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useCategories } from '../hooks/useCategories';
 import { KioskContext } from './KioskContext';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 export function KioskProvider({ children }) {
   const { categories } = useCategories();
@@ -66,7 +67,28 @@ export function KioskProvider({ children }) {
 
   const onSendOrder = async (e) => {
     e.preventDefault();
-    console.log('Sending order', { order, name });
+    if (order.length === 0 || name.trim().length < 3) return;
+
+    try {
+      await axios.post('/api/orders', {
+        order,
+        name,
+        total,
+        date: Date.now().toString()
+      });
+
+      setCurrentCategory(categories[0]);
+      setOrder([]);
+      setName('');
+      setTotal(0);
+      toast.success('Pedido realizado correctamente');
+
+      setTimeout(() => {
+        router.push('/');
+      }, 2500);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
