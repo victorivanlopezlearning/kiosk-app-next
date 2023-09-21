@@ -26,10 +26,10 @@ model Category {
   products Product[]
 }
 
-model order {
+model Order {
   id       Int       @id @default(autoincrement())
   name String
   date String
   total Float
-  request Json
+  order Json
 }
