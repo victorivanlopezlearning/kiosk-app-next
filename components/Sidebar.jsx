@@ -8,14 +8,16 @@ export function Sidebar() {
 
   return (
     <>
+    <div className='p-5'>
       <Image
         src="/assets/img/logo.svg"
         width={300}
         height={100}
         alt="Imagen logotipo"
       />
+    </div>
 
-      <nav className='mt-10'>
+      <nav className='mt-5'>
         {
           categories.map(category => (
             <Category key={category.id} category={category} />
