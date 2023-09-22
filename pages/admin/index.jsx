@@ -7,7 +7,8 @@ import { Message, Order } from '../../components';
 export default function Home() {
 
   const fetcher = () => axios('/api/orders').then(res => res.data); // fetcher función para conectar a la API. Usando Fetch, Axios, etc
-  const { data, error, isLoading } = useSWR('/api/orders', fetcher);
+  const { data, error, isLoading } = useSWR('/api/orders', fetcher, {refreshInterval: 100});
+
   const showOrders = useMemo(() => data && data.length > 0, [data]);
 
   // if (isLoading) return <AdminLayout><h3>Cargando...</h3></AdminLayout>
