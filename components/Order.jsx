@@ -1,10 +1,22 @@
 import Image from 'next/image';
 import { formatToDollars } from '../helpers';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 export function Order({ order }) {
 
   const { id, name, order: details, total } = order;
+
+  const onCompleteOrder = async () => {
+    try {
+      await axios.post(`/api/orders/${id}`);
+      toast.success('¡Orden completada!');
+    } catch (error) {
+      toast.error('¡Hubo un error!');
+      console.log(error);
+    }
+  }
 
   return (
     <div className="border p-10 space-y-5">
@@ -37,9 +49,17 @@ export function Order({ order }) {
       </div>
 
       <div className='md:flex md:items-center md:justify-between my-10'>
-        <p className='mt-5 font-black text-4xl text-amber-500'>
+        <p className='mt-5 font-black text-4xl text-amber-500 underline'>
           Total a pagar: {formatToDollars(total)}
         </p>
+
+        <button
+          type='button'
+          className='bg-indigo-600 hover:bg-indigo-800 transition-colors text-white font-bold mt-5 md:mt-0 py-3 px-10 rounded'
+          onClick={onCompleteOrder}
+        >
+          Completar orden
+        </button>
       </div>
     </div>
   )
