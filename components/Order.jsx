@@ -19,7 +19,7 @@ export function Order({ order }) {
   }
 
   return (
-    <div className="border p-10 space-y-5">
+    <div className="border p-5 space-y-5">
       <h3 className='text-2xl font-bold'>Orden: #{id}</h3>
       <p className='text-lg font-bold'>Cliente: {name}</p>
 
@@ -30,12 +30,13 @@ export function Order({ order }) {
               key={id}
               className="py-3 flex items-center border-b last-of-type:border-0"
             >
-              <div className="w-32">
+              <div className="flex-initial w-32">
                 <Image
                   src={`/assets/img/${image}.jpg`}
-                  width={400}
-                  height={500}
+                  width={100}
+                  height={130}
                   alt={`imagen de ${name}`}
+                  layout='fixed'
                 />
               </div>
 

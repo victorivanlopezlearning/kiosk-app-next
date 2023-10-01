@@ -13,6 +13,7 @@ export function KioskProvider({ children }) {
   const [order, setOrder] = useState([]);
   const [name, setName] = useState('');
   const [total, setTotal] = useState(0);
+  const [open, setOpen] = useState(false);
 
   const router = useRouter();
 
@@ -28,6 +29,7 @@ export function KioskProvider({ children }) {
   const onClickCategory = (id) => {
     const [category] = categories.filter(cat => cat.id === id);
     setCurrentCategory(category);
+    setOpen(!open);
     router.push('/');
   }
 
@@ -108,7 +110,9 @@ export function KioskProvider({ children }) {
         name,
         setName,
         onSendOrder,
-        total
+        total,
+        open,
+        setOpen
       }}
     >
       {children}
