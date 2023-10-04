@@ -3,7 +3,6 @@
 ## Description
 - Development with Next 12.
 - Tailwind CSS for interface styles.
-- React Router DOM implemented.
 - State management with React Context API.
 - Custom Hooks.
 - MySQL database with Prisma ORM.
@@ -31,7 +30,6 @@ To install and run the project locally, follow these steps:
 ## Built with
 
 - [Next v12](https://nextjs.org/)
-- [React Router DOM v6.16](https://reactrouter.com/)
 - CSS Styles - [Tailwind v3.3](https://tailwindcss.com/)
 - HTTP Client - [Axios V1.5](https://axios-http.com/docs/intro)
 - Data Fetching - [SWR v2.2](https://swr.vercel.app/)
